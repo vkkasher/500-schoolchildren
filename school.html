@@ -40,7 +40,7 @@
 
         // Начинаем с 1, чтобы пропустить заголовки столбцов
         for (var i = 1; i < rows.length; i++) {
-          var cells = JSON.parse('{' + rows[i] + '}');
+          var cells = rows[i].split(',');
           var row = table.insertRow(-1);
 
           // Добавляем ячейки в соответствии с заголовками столбцов
@@ -48,19 +48,19 @@
           cellId.textContent = i; // № - нумерация строки
 
           var cellName = row.insertCell(-1);
-          cellName.textContent = cells['full_name']; // ФИО
+          cellName.textContent = cells[1]; // ФИО
 
           var cellKateg = row.insertCell(-1);
-          cellKateg.textContent = cells['kategori']; // Категория
+          cellKateg.textContent = cells[2]; // Категория
 
           var cellClass = row.insertCell(-1);
-          cellClass.textContent = cells['grade']; // Класс
+          cellClass.textContent = cells[3]; // Класс
 
           var cellOO = row.insertCell(-1);
-          cellOO.textContent = cells['school']; // ОО
+          cellOO.textContent = cells[4]; // ОО
 
           var cellPoints = row.insertCell(-1);
-          cellPoints.textContent = cells['coin']; // Баллы
+          cellPoints.textContent = cells[5]; // Баллы
         }
       } else {
         console.error('Не удалось загрузить CSV файл.');
