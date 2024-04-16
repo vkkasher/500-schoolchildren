@@ -17,6 +17,7 @@
         <tr>
           <th class="main__id">№</th>
           <th class="main__name">ФИО</th>
+          <th class="main__kateg">Категория</th>
           <th class="main__class">Класс</th>
           <th class="main__OO">ОО</th>
           <th class="main__points">Баллы</th>
@@ -29,33 +30,47 @@
   </main>
 
   <script>
-    function loadCSV(filePath) {
-      var xhr = new XMLHttpRequest();
-      xhr.onreadystatechange = function() {
-        if (xhr.readyState === 4) {
-          if (xhr.status === 200) {
-            var rows = xhr.responseText.split('\n');
-            var table = document.getElementById('users-table');
+  function loadCSV(filePath) {
+  var xhr = new XMLHttpRequest();
+  xhr.onreadystatechange = function() {
+    if (xhr.readyState === 4) {
+      if (xhr.status === 200) {
+        var rows = xhr.responseText.split('\n');
+        var table = document.getElementById('users-table');
 
-            for (var i = 0; i < rows.length; i++) {
-              var cells = rows[i].split(',');
-              var row = table.insertRow(-1);
+        // Начинаем с 1, чтобы пропустить заголовки столбцов
+        for (var i = 1; i < rows.length; i++) {
+          var cells = rows[i].split(',');
+          var row = table.insertRow(-1);
 
-              for (var j = 0; j < cells.length; j++) {
-                var cell = row.insertCell(-1);
-                cell.textContent = cells[j];
-              }
-            }
-          } else {
-            console.error('Не удалось загрузить CSV файл.');
-          }
+          // Добавляем ячейки в соответствии с заголовками столбцов
+          var cellId = row.insertCell(-1);
+          cellId.textContent = cells[0]; // user_id
+
+          var cellName = row.insertCell(-1);
+          cellName.textContent = cells[1]; // full_name
+
+          var cellKateg = row.insertCell(-1);
+          cellKateg.textContent = cells[2]; // kategori
+
+          var cellClass = row.insertCell(-1);
+          cellClass.textContent = cells[3]; // grade
+
+          var cellOO = row.insertCell(-1);
+          cellOO.textContent = cells[4]; // school
+
+          var cellPoints = row.insertCell(-1);
+          cellPoints.textContent = cells[5]; // coin
         }
-      };
-      xhr.open('GET', filePath, true);
-      xhr.send();
+      } else {
+        console.error('Не удалось загрузить CSV файл.');
+      }
     }
-
-    loadCSV('data.csv'); // Укажите путь к вашему CSV файлу
+  };
+  xhr.open('GET', filePath, true);
+  xhr.send();
+  }
+  loadCSV('data.csv'); // Укажите путь к вашему CSV файлу
   </script>
 </body>
 </html>
