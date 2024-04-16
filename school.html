@@ -40,12 +40,12 @@
 
         // Начинаем с 1, чтобы пропустить заголовки столбцов
         for (var i = 1; i < rows.length; i++) {
-          var cells = rows[i].split(',');
+          var cells = JSON.parse('{' + rows[i] + '}');
           var row = table.insertRow(-1);
 
           // Добавляем ячейки в соответствии с заголовками столбцов
           var cellId = row.insertCell(-1);
-          cellId.textContent = cells[0]; // №
+          cellId.textContent = i; // № - нумерация строки
 
           var cellName = row.insertCell(-1);
           cellName.textContent = cells['full_name']; // ФИО
