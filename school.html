@@ -45,22 +45,22 @@
 
           // Добавляем ячейки в соответствии с заголовками столбцов
           var cellId = row.insertCell(-1);
-          cellId.textContent = cells[0]; // user_id
+          cellId.textContent = cells[0]; // №
 
           var cellName = row.insertCell(-1);
-          cellName.textContent = cells[1]; // full_name
+          cellName.textContent = cells['full_name']; // ФИО
 
           var cellKateg = row.insertCell(-1);
-          cellKateg.textContent = cells[2]; // kategori
+          cellKateg.textContent = cells['kategori']; // Категория
 
           var cellClass = row.insertCell(-1);
-          cellClass.textContent = cells[3]; // grade
+          cellClass.textContent = cells['grade']; // Класс
 
           var cellOO = row.insertCell(-1);
-          cellOO.textContent = cells[4]; // school
+          cellOO.textContent = cells['school']; // ОО
 
           var cellPoints = row.insertCell(-1);
-          cellPoints.textContent = cells[5]; // coin
+          cellPoints.textContent = cells['coin']; // Баллы
         }
       } else {
         console.error('Не удалось загрузить CSV файл.');
@@ -70,6 +70,7 @@
   xhr.open('GET', filePath, true);
   xhr.send();
   }
+
   loadCSV('data.csv'); // Укажите путь к вашему CSV файлу
   </script>
 </body>
