@@ -144,3 +144,9 @@ th {
   border-bottom: min(3vw, 11px) solid black;
   border-top: 0;
 }
+
+@media only screen and (max-width: 430px) {
+  table, th, td {
+    font-size: 14px;
+  }
+}
