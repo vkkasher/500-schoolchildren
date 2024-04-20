@@ -14,17 +14,16 @@
     </div>
     <table class="main__table main__list">
       <thead>
-        <tr>
-          <th class="main__id">№</th>
-          <th class="main__name">ФИО</th>
-          <th class="main__kateg">Категория</th>
-          <th class="main__class">Класс</th>
-          <th class="main__OO">ОО</th>
-          <th class="main__points">Баллы</th>
-        </tr>
+      <tr>
+        <th class="main__id">№</th>
+        <th class="main__name">ФИО</th>
+        <th class="main__kateg">Категория</th>
+        <th class="main__class">Класс</th>
+        <th class="main__OO">ОО</th>
+        <th class="main__points">Баллы</th>
+      </tr>
       </thead>
       <tbody id="users-table">
-        <!-- Здесь будут добавлены строки таблицы -->
       </tbody>
     </table>
   </main>
@@ -38,7 +37,6 @@
         var rows = xhr.responseText.split('\n');
         var data = [];
 
-        // Пропускаем заголовки столбцов и собираем данные
         for (var i = 1; i < rows.length; i++) {
           var cells = rows[i].split(',');
           data.push({
@@ -47,24 +45,21 @@
             kateg: cells[2],
             class: cells[3],
             oo: cells[4],
-            points: parseFloat(cells[5]) // Предполагаем, что баллы - это числа
+            points: parseFloat(cells[5])
           });
         }
 
-        // Сортируем данные по убыванию баллов
         data.sort(function(a, b) {
           return b.points - a.points;
         });
 
         var table = document.getElementById('users-table');
 
-        // Очищаем таблицу перед добавлением отсортированных данных
         table.innerHTML = '';
 
-        // Добавляем отсортированные данные в таблицу
         data.forEach(function(item, index) {
           var row = table.insertRow(-1);
-          row.insertCell(-1).textContent = index + 1; // Обновляем нумерацию с учетом сортировки
+          row.insertCell(-1).textContent = index + 1;
           row.insertCell(-1).textContent = item.name;
           row.insertCell(-1).textContent = item.kateg;
           row.insertCell(-1).textContent = item.class;
@@ -80,7 +75,7 @@
   xhr.send();
   }
 
-  loadCSV('data.csv'); // Укажите путь к вашему CSV файлу
+  loadCSV('data.csv');
   </script>
 </body>
 </html>
