@@ -36,32 +36,41 @@
     if (xhr.readyState === 4) {
       if (xhr.status === 200) {
         var rows = xhr.responseText.split('\n');
-        var table = document.getElementById('users-table');
+        var data = [];
 
-        // Начинаем с 1, чтобы пропустить заголовки столбцов
+        // Пропускаем заголовки столбцов и собираем данные
         for (var i = 1; i < rows.length; i++) {
           var cells = rows[i].split(',');
-          var row = table.insertRow(-1);
-
-          // Добавляем ячейки в соответствии с заголовками столбцов
-          var cellId = row.insertCell(-1);
-          cellId.textContent = i; // № - нумерация строки
-
-          var cellName = row.insertCell(-1);
-          cellName.textContent = cells[1]; // ФИО
-
-          var cellKateg = row.insertCell(-1);
-          cellKateg.textContent = cells[2]; // Категория
-
-          var cellClass = row.insertCell(-1);
-          cellClass.textContent = cells[3]; // Класс
-
-          var cellOO = row.insertCell(-1);
-          cellOO.textContent = cells[4]; // ОО
-
-          var cellPoints = row.insertCell(-1);
-          cellPoints.textContent = cells[5]; // Баллы
+          data.push({
+            id: i,
+            name: cells[1],
+            kateg: cells[2],
+            class: cells[3],
+            oo: cells[4],
+            points: parseFloat(cells[5]) // Предполагаем, что баллы - это числа
+          });
         }
+
+        // Сортируем данные по убыванию баллов
+        data.sort(function(a, b) {
+          return b.points - a.points;
+        });
+
+        var table = document.getElementById('users-table');
+
+        // Очищаем таблицу перед добавлением отсортированных данных
+        table.innerHTML = '';
+
+        // Добавляем отсортированные данные в таблицу
+        data.forEach(function(item, index) {
+          var row = table.insertRow(-1);
+          row.insertCell(-1).textContent = index + 1; // Обновляем нумерацию с учетом сортировки
+          row.insertCell(-1).textContent = item.name;
+          row.insertCell(-1).textContent = item.kateg;
+          row.insertCell(-1).textContent = item.class;
+          row.insertCell(-1).textContent = item.oo;
+          row.insertCell(-1).textContent = item.points;
+        });
       } else {
         console.error('Не удалось загрузить CSV файл.');
       }
