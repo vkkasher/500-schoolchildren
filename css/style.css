@@ -5,18 +5,10 @@ html {
   position: relative;
 }
 
-table {
-  border-collapse: collapse;
-}
-
-td {
-  padding: 5px;
-  border: 1px solid #000;
-}
-
-th {
-  padding: 5px;
-  border: 1px solid #000;
+body {
+  font-family: 'Arial', sans-serif;
+  color: #333;
+  background-color: #f8f8f8;
 }
 
 .wrapper {
@@ -27,14 +19,9 @@ th {
   grid-template-rows: auto 1fr auto;
 }
 
-.hidden {
-  display: none !important;
-}
-
 .header {
   background: white;
-  -webkit-box-shadow: rgba(68, 68, 68, 0.1843137255) 0px 5px 10px 5px;
-          box-shadow: rgba(68, 68, 68, 0.1843137255) 0px 5px 10px 5px;
+  box-shadow: rgba(68, 68, 68, 0.1843137255) 0px 5px 10px 5px;
 }
 
 .header__title {
@@ -49,8 +36,7 @@ th {
 
 .main__section {
   background: white;
-  -webkit-border-radius: 15px;
-          border-radius: 15px;
+  border-radius: 15px;
   margin: 8px;
 }
 
@@ -61,37 +47,57 @@ th {
   position: relative;
 }
 
-.main__button {
-  width: 0;
-  height: 0;
-  border-left: min(3vw, 11px) solid transparent;
-  border-right: min(3vw, 11px) solid transparent;
-  border-top: min(3vw, 11px) solid black;
-  position: absolute;
-  right: 5px;
-  top: 50%;
-  -webkit-transform: translateY(-50%);
-      -ms-transform: translateY(-50%);
-          transform: translateY(-50%);
+.main__table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 20px;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+  border-radius: 8px;
+  overflow: hidden;
+  display: table;
+  margin: 45px auto 0 auto;
 }
 
-.main__grid {
-  display: grid;
-  grid-template-rows: auto auto;
-  grid-template-columns: auto auto auto;
+.main__table th,
+.main__table td {
+  text-align: left;
+  padding: 12px 20px;
+}
+
+.main__table th {
+  background-color: #007bff;
+  color: white;
   padding: 5px;
-  -webkit-box-align: center;
-  -webkit-align-items: center;
-      -ms-flex-align: center;
-          align-items: center;
+  border: 1px solid #000;
 }
 
+.main__table tr:nth-child(even) {
+  background-color: #f2f2f2;
+}
+
+.main__table tr:hover {
+  background-color: #ddd;
+}
+
+.footer {
+  width: 100%;
+  margin-top: 10px;
+}
+
+.footer__list {
+  display: flex;
+  background: white;
+  justify-content: space-around;
+  padding: 20px;
+  align-items: center;
+}
+
+/* Дополнительные стили для закругленных углов и современного оформления */
 .main__gridBlock {
   background: linear-gradient(135deg, #146678, #019eac);
   color: white;
   margin: 4px;
-  -webkit-border-radius: 15px;
-          border-radius: 15px;
+  border-radius: 15px;
 }
 
 .main__gridTitle {
@@ -105,39 +111,21 @@ th {
   padding-bottom: 0;
   display: block;
 }
+
 .main__list-section .main__title {
   padding: 15px 0px;
 }
 
-.main__listButton {
-  right: -10px;
-}
-
-.main__table {
-  display: table;
-  width: 80vw;
-  margin: 45px auto 0 auto;
-}
-
-.footer {
-  width: 100%;
-  margin-top: 10px;
-}
-
-.footer__list {
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
-  display: flex;
-  background: white;
-  -webkit-justify-content: space-around;
-      -ms-flex-pack: distribute;
-          justify-content: space-around;
-  padding: 20px;
-  -webkit-box-align: center;
-  -webkit-align-items: center;
-      -ms-flex-align: center;
-          align-items: center;
+.main__button {
+  width: 0;
+  height: 0;
+  border-left: min(3vw, 11px) solid transparent;
+  border-right: min(3vw, 11px) solid transparent;
+  border-top: min(3vw, 11px) solid black;
+  position: absolute;
+  right: 5px;
+  top: 50%;
+  transform: translateY(-50%);
 }
 
 .main__button--active {
