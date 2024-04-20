@@ -60,8 +60,7 @@ body {
 
 .main__table th,
 .main__table td {
-  text-align: left;
-  padding: 12px 20px;
+  padding: 5px 5px;
 }
 
 .main__table th {
